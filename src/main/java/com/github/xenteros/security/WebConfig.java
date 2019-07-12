@@ -26,14 +26,14 @@ class WebConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api**").authenticated()
                 .antMatchers("/api/users/*/enable").permitAll()
-                .antMatchers("/login.html").permitAll()
+                .antMatchers("/login-page.html").permitAll()
 //                .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/login-success")
+                .successForwardUrl("/login-success")
                 .loginPage("/login")
                 .permitAll();
 
