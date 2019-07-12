@@ -5,10 +5,7 @@ import com.github.xenteros.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -25,5 +22,10 @@ class UserController {
     @PutMapping
     public UserDto createUser(@RequestParam String email, @RequestParam String password) {
         return userService.createUser(email, password);
+    }
+
+    @GetMapping("/{uuid}/enable")
+    public void enableUser(@PathVariable String uuid) {
+        userService.enableUser(uuid);
     }
 }

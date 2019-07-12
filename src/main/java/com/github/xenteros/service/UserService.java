@@ -22,8 +22,15 @@ public class UserService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+        user.setEnabled(false);
         user = userRepository.save(user);
 
         return new UserDto(user);
+    }
+
+    public void enableUser(String uuid) {
+        User user = userRepository.findOneByUuid(uuid);
+        user.setEnabled(true);
+        userRepository.save(user);
     }
 }
